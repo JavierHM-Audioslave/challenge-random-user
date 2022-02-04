@@ -10,12 +10,12 @@ import {usersActions} from "./Actions/userActions";
 function App() {
 
   const dispatch = useDispatch();
-  dispatch(usersActions.willsetUsers());
 
-  // useEffect(() => {
-  //   console.log("Hola");
-  //   dispatch(willSetUsers);
-  // }, []);
+
+  
+  useEffect(() => {
+    dispatch(usersActions.willsetUsers());
+  }, []);
 
   return (
     <Router history={history}>
