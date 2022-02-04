@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,kBAAkB,CAAC;EACf,YAAY,EAAE,IAAI;EAClB,cAAc,EAAE,KAAK;CACxB;;AAED,AAAA,yBAAyB,CAAC;EACtB,GAAG,EAAE,KAAK;CACb;;AAED,AAAA,mBAAmB,CAAC;EAChB,WAAW,EAAE,KAAK;CACrB;;AAED,AAAA,gBAAgB,CAAC;EACb,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,OAAO;CAClB",
+    "sources": [
+        "App.scss",
+        "scss/_CardBox.scss"
+    ],
+    "names": [],
+    "file": "App.css"
+}
