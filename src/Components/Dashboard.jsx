@@ -37,7 +37,7 @@ const Dashboard = () => {
                 
                 <Row className="mt-3">
                     <Col>
-                        <Button variant="info" onClick={ () => setFilteredUsers(orderByName(filteredUsers || users)) }>Order by ascending full name</Button>
+                        <Button variant="info" onClick={ () => setFilteredUsers(orderByName(filteredUsers || users)) }>Order by ascending last name</Button>
                     </Col>
                 </Row>
             </Form>
