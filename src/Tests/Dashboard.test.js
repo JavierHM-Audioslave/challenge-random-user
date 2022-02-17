@@ -3,21 +3,13 @@ import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import React from "react";
 import { screen, render, fireEvent, cleanup } from "@testing-library/react";
 import Dashboard from '../Components/Dashboard';
-import configureStore from '../Store';
+// import configureStore from '../Store';
 import { Provider } from 'react-redux';
+import configureStore from "redux-mock-store";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 
-const store = configureStore();
-afterEach(cleanup);
-beforeEach(() => {
-    render(
-        <Provider store={store}>
-            <Dashboard/>
-        </Provider>
-    );
-});
 
 const users = [
     {
@@ -36,11 +28,11 @@ const users = [
         login: {
             uuid: "11518aa9-956b-43f3-ad17-722e3f1f1e3e",
             username: "javier-monardo",
-            password: "123",
-            picture: {
-                large: "https://randomuser.me/api/portraits/women/22.jpg",
-                medium: "https://randomuser.me/api/portraits/med/women/22.jpg"
-            }
+            password: "123"
+        },
+        picture: {
+            large: "https://randomuser.me/api/portraits/women/22.jpg",
+            medium: "https://randomuser.me/api/portraits/med/women/22.jpg"
         }
     },
 
@@ -60,15 +52,35 @@ const users = [
         login: {
             uuid: "1333f8d8-4bfc-4b35-8db9-70f00d8eae47",
             username: "organickoala267",
-            password: "care1839",
-            picture: {
-                large: "https://randomuser.me/api/portraits/women/27.jpg",
-                medium: "https://randomuser.me/api/portraits/med/women/27.jpg"
-            }
+            password: "care1839"
+        },
+        picture: {
+            large: "https://randomuser.me/api/portraits/women/27.jpg",
+            medium: "https://randomuser.me/api/portraits/med/women/27.jpg"
         }
     }
 
 ];
+
+
+
+
+const mocksStore = configureStore([]);
+const store = mocksStore({
+    users: users
+});
+
+
+afterEach(cleanup);
+beforeEach(() => {
+    render(
+        <Provider store={store}>
+            <Dashboard/>
+        </Provider>
+    );
+});
+
+
 
 
 
@@ -85,14 +97,15 @@ describe("Dashboard component", () => {
         expect(screen.getByPlaceholderText("Javier Monardo")).toBeInTheDocument();
     });
 
-    // it("", () => {
-    //     const wrapper = render( 
-    //         <Provider store={store}>
-    //             <Dashboard/>
-    //         </Provider>
-    //     );
-    //     screen.debug();
-    //     const input = wrapper.getByPlaceholderText("Javier Monardo");
-    //     input.value = 
-    // });
+    it("By typing a full name existing in the fetched data, the card belonging that name appears", () => {
+
+        const input = screen.getByTestId("full-name-input");
+        // input.value = "Javier Monardo";
+        // console.log(input);
+
+        fireEvent.click(screen.getByTestId("search-form"), { target: { elements: [ {value: "Javier Monardo"} ] } });
+        // fireEvent.submit(screen.getByText("Search"));
+        screen.debug();
+
+    });
 });

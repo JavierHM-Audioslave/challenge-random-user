@@ -22,17 +22,19 @@ const Dashboard = () => {
         <Container fluid="lg">
             <h1 data-testid="title" className="my-3 text-center">USERS</h1>
 
-            <Form onSubmit={ e => setFilteredUsers( () => userFiltering(e, users) )}>
+            <Form data-testid="search-form" onSubmit={ e => setFilteredUsers( () => userFiltering(e, users) )}>
                 <Row className="gx-0"> 
                     <Col >                
                         <FloatingLabel label="Search By Name">
-                            <Form.Control as="input" placeholder="Javier Monardo"/>
+                            <Form.Control data-testid="full-name-input" as="input" placeholder="Javier Monardo"/>
                         </FloatingLabel>
                     </Col>
                     <Col xs="auto">
                         <Button variant="primary" type="submit" className=" d-block h-100 px-2 px-sm-3">Search</Button>
                     </Col>
                 </Row>
+
+                
                 <Row className="mt-3">
                     <Col>
                         <Button variant="info" onClick={ () => setFilteredUsers(orderByName(filteredUsers || users)) }>Order by ascending full name</Button>
